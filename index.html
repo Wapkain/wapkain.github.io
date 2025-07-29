@@ -5,31 +5,372 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wapkain - Mobile App Developer</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-        h1 { color: #333; }
-        .app { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 80px 0;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .about-section h2 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .about-content {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #f8f9ff, #e8eeff);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .skill-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .projects-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .projects-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .project-highlight {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-highlight h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .contact-section h2 {
+            color: #667eea;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, #f8f9ff, #e8eeff);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p {
+            color: #666;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Wapkain</h1>
-    <h2>Mobile App Developer</h2>
-    
-    <div class="app">
-        <h3>VersionBen - Personal Development Hub</h3>
-        <p>Transform your goals into reality with VersionBen!</p>
-        <ul>
-            <li>Set goals in Developer, Athlete, Leader, Artist categories</li>
-            <li>Task creation and progress tracking</li>
-            <li>Multi-language support and modern design</li>
-            <li>Customizable profile and dashboard</li>
-        </ul>
-        <p><strong>Available on iOS App Store and Google Play Store</strong></p>
+    <div class="container">
+        <section class="hero">
+            <h1>Wapkain</h1>
+            <p class="subtitle">Mobile App Developer</p>
+            <p class="description">
+                Passionate about creating innovative mobile applications that solve real-world problems. 
+                Specialized in Flutter development with a focus on user experience and modern design.
+            </p>
+        </section>
+
+        <section class="card about-section">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>
+                    I'm a dedicated mobile app developer with expertise in creating cross-platform applications 
+                    using Flutter and Dart. My journey in software development has led me to focus on building 
+                    apps that not only function flawlessly but also provide exceptional user experiences.
+                </p>
+                <p style="margin-top: 20px;">
+                    I believe in the power of technology to transform lives, and I'm committed to crafting 
+                    solutions that are both innovative and accessible to users worldwide.
+                </p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">📱</div>
+                    <h3>Mobile Development</h3>
+                    <p>Expert in Flutter & Dart for cross-platform app development. Creating beautiful, performant apps for iOS and Android.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Passionate about creating intuitive user interfaces with modern design principles and smooth animations.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">☁️</div>
+                    <h3>Backend Integration</h3>
+                    <p>Experience with Firebase, APIs, and cloud services for robust app functionality and data management.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3>Problem Solving</h3>
+                    <p>Strong analytical skills for debugging, optimization, and finding creative solutions to complex challenges.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <h2>Featured Project</h2>
+            <div class="project-highlight">
+                <h3>VersionBen - Personal Development Hub</h3>
+                <p>
+                    A comprehensive goal-setting and progress tracking application designed to help users 
+                    achieve their personal development objectives across multiple life categories.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">Flutter</span>
+                    <span class="tag">Dart</span>
+                    <span class="tag">Firebase</span>
+                    <span class="tag">Multi-language</span>
+                    <span class="tag">Cross-platform</span>
+                </div>
+                <p style="margin-top: 15px; font-style: italic;">
+                    Available on iOS App Store and Google Play Store
+                </p>
+            </div>
+        </section>
+
+        <section class="card contact-section">
+            <h2>Let's Work Together</h2>
+            <p style="color: #666; margin-bottom: 30px;">
+                Interested in collaborating on your next mobile app project? I'd love to hear from you.
+            </p>
+
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h4>📧 Email</h4>
+                    <p>wapkain@gmail.com</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>💼 Specialization</h4>
+                    <p>Mobile App Development</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>🛠️ Technology Stack</h4>
+                    <p>Flutter, Dart, Firebase</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>🌍 Languages Supported</h4>
+                    <p>Multi-language Apps</p>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Portfolio</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+        </section>
     </div>
-    
-    <h3>Legal</h3>
-    <p><a href="privacy-policy.html">Privacy Policy</a></p>
-    
-    <h3>Contact</h3>
-    <p>Email: wapkain@gmail.com</p>
 </body>
 </html>
